@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Info</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('img/airplane.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar img {
+            height: 60px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-left: 30px;
+        }
+
+        .navbar ul li a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #ffcc00;
+            color: #000;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border 0.3s ease-in-out;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #ffcc00;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #e6b800;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul li {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        <img src="img/logo.png" alt="Logo"> 
+        <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+
+    
+    <div class="form-container">
+        <h1>Customer Information</h1>
+        <form id="bookingForm" action = "cust_info.php" method = "POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName">
+                <span class="error" id="firstNameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName">
+                <span class="error" id="lastNameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age">
+                <span class="error" id="ageError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+                <span class="error" id="dobError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span class="error" id="genderError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="tel" id="contactNumber" name="contactNumber">
+                <span class="error" id="contactNumberError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <span class="error" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="passportNo">Passport Number:</label>
+                <input type="text" id="passportNo" name="passportNo">
+                <span class="error" id="passportNoError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="aadhaarNo">Aadhaar Number:</label>
+                <input type="text" id="aadhaarNo" name="aadhaarNo">
+                <span class="error" id="aadhaarNoError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="mealPreferences">Meal Preferences:</label>
+                <select id="mealPreferences" name="mealPreferences">
+                    <option value="">Select Meal Preference</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Non-Vegetarian">Non-Vegetarian</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
+                </select>
+                <span class="error" id="mealPreferencesError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="flightTiming">Flight Timing:</label>
+                <input type="time" id="flightTiming" name="flightTiming">
+                <span class="error" id="flightTimingError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="fileUpload">Upload File:</label>
+                <input type="file" id="fileUpload" name="fileUpload">
+                <span class="error" id="fileUploadError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="nationality">Nationality:</label>
+                <input type="text" id="nationality" name="nationality">
+                <span class="error" id="nationalityError"></span>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const age = document.getElementById("age").value;
+            const dob = document.getElementById("dob").value;
+            const gender = document.getElementById("gender").value;
+            const contactNumber = document.getElementById("contactNumber").value;
+            const email = document.getElementById("email").value;
+            const passportNo = document.getElementById("passportNo").value;
+            const aadhaarNo = document.getElementById("aadhaarNo").value;
+            const mealPreferences = document.getElementById("mealPreferences").value;
+            const flightTiming = document.getElementById("flightTiming").value;
+            const fileUpload = document.getElementById("fileUpload").value;
+            const nationality = document.getElementById("nationality").value;
+
+            // Clear previous error messages
+            document.querySelectorAll(".error").forEach(error => error.textContent = "");
+
+            // Validate fields
+            let isValid = true;
+            if (!firstName) {
+                document.getElementById("firstNameError").textContent = "First Name is required.";
+                isValid = false;
+            }
+            if (!lastName) {
+                document.getElementById("lastNameError").textContent = "Last Name is required.";
+                isValid = false;
+            }
+            if (!age || age < 1 || age > 120) {
+                document.getElementById("ageError").textContent = "Please enter a valid age.";
+                isValid = false;
+            }
+            if (!dob) {
+                document.getElementById("dobError").textContent = "Date of Birth is required.";
+                isValid = false;
+            }
+            if (!gender) {
+                document.getElementById("genderError").textContent = "Gender is required.";
+                isValid = false;
+            }
+            if (!contactNumber) {
+                document.getElementById("contactNumberError").textContent = "Contact Number is required.";
+                isValid = false;
+            }
+            if (!email) {
+                document.getElementById("emailError").textContent = "Email is required.";
+                isValid = false;
+            }
+            if (!passportNo) {
+                document.getElementById("passportNoError").textContent = "Passport Number is required.";
+                isValid = false;
+            }
+            if (!aadhaarNo) {
+                document.getElementById("aadhaarNoError").textContent = "Aadhaar Number is required.";
+                isValid = false;
+            }
+            if (!mealPreferences) {
+                document.getElementById("mealPreferencesError").textContent = "Meal Preference is required.";
+                isValid = false;
+            }
+            if (!flightTiming) {
+                document.getElementById("flightTimingError").textContent = "Flight Timing is required.";
+                isValid = false;
+            }
+            if (!fileUpload) {
+                document.getElementById("fileUploadError").textContent = "File upload is required.";
+                isValid = false;
+            }
+            if (!nationality) {
+                document.getElementById("nationalityError").textContent = "Nationality is required.";
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            } else {
+                alert("Form submitted successfully!");
+                // window.location.href = "customer_info.html";
+                var moreTravelers = confirm("Are there more people traveling?");
+                if (moreTravelers) {
+        window.location.href = "customer_info.html";
+    }
+    
+            }
+        });
+    </script>
+</body>
+</html>

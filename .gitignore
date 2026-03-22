@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+*.env.local
+
+# Uploads (user-generated content)
+uploads/*
+!uploads/.gitkeep
+
+# PHP dependencies
+vendor/
+composer.lock
+
+# Logs
+*.log
+error_log
+
+# Node (if any)
+node_modules/

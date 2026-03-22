@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  web:
+    image: php:8.1-apache
+    container_name: flight-ticketing-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    command: >
+      bash -c "docker-php-ext-install mysqli && apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: flight-ticketing-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: welcome
+      MYSQL_DATABASE: pbl
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: flight-ticketing-pma
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: welcome
+    depends_on:
+      - db
+
+volumes:
+  db_data:
