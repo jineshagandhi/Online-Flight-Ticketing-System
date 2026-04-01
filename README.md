@@ -226,9 +226,6 @@ The system uses a single `customers` table:
 | `delete.php?id=X`      | GET    | Delete booking X                     |
 | `contact.html`         | GET    | Contact page with Google Maps        |
 
-## Author
-
-**Jinesha Gandhi**
 
 ## License
 
